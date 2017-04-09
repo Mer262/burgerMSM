@@ -1,11 +1,16 @@
-<h1>burgers!</h1>
+<div class="container">
 
-<h2>burgers that are not devoured!</h2>
+<div class="jumbotron">
+<h1>Yay Burgers!</h1>
+</div>
 
-<ul>
+<div class="row">
+<div id="eaten" class="col-md-5">
+  <h2>Still on the table...better eat them now!</h2>
+<ul class="list-unstyled">
   {{#each burgers}}
     {{#unless this.devoured}}
-      <li>
+      <li class="list-unstyled burgerList">
         {{this.burger_name}}
 
         <form action="/{{this.id}}?_method=PUT" method="POST">
@@ -13,44 +18,46 @@
           <button type="submit">EAT ME!</button>
         </form>
 
-        {{!--{{> burgers/delete-burger}}--}}
       </li>
     {{/unless}}
   {{/each}}
 </ul>
+</div>
 
-<h2>burgers that are devoured!</h2>
+<div class="col-md-1"></div>
 
-<ul>
+
+<div id="notEaten" class="col-md-5">
+<h2>So sorry! These have already been eaten!</h2>
+
+<ul class="list-unstyled">
   {{#each burgers}}
     {{#if this.devoured}}
-      <li>
+      <li class="list-unstyled burgerList">
         {{this.burger_name}}
 
         <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button type="submit">Eat me!</button>
+        <input type="hidden" name="devoured" value="false">
+          <button type="submit">Make this burger again!</button>
         </form>
 
-        {{!--{{> burgers/delete-burger}}--}}
       </li>
     {{/if}}
   {{/each}}
 </ul>
-
-<h2>Add a burger</h2>
-<form class="create-update-form" action="/" method="POST">
+</div>
+</div>
+<div class="row">
+<h2>Add Another Burger</h2>
+<form class="create-update-form col-md-4" action="/" method="POST">
 
   <div class="form-group">
     <label for="ca">Burger Name:</label>
     <input type="text" id="ca" name="burger_name">
-  </div>
-
-  <div class="form-group">
-    <label for="slee">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="devoured" value="0"> Not Devoured Yet
+    <input type="hidden" name="devoured" value="false">
   </div>
 
   <button type="submit">Add burger</button>
 </form>
+</div>
+</div>
