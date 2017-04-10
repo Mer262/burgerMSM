@@ -18,7 +18,8 @@
         "password": "6134dc83",
         "database": "heroku_c670864fcbd3802",
         "host": "us-cdbr-iron-east-03.cleardb.net",
-        "port": "8889",
-        "dialect": "mysql"
+        "port": "3306",
+        "dialect": "mysql",
+        "use_env_variable": "CLEARDB_DATABASE_URL"
     }
 }
